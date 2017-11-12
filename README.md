@@ -10,9 +10,9 @@ Getting the list of available network interfaces (if your system has for instanc
 
 Getting details for a specific interface:
 
-<code>(interface-details "eno1")</code> produces the following map as a result:
+<code>(interface-details "eno1")</code> produces the following map as a result:<br>
 <code>
-{:name "eno1",
+{:name "eno1",<br>
  :type "ether",
  :ip-v4 "192.168.1.9",
  :ip-v6 "aaaa::bbbb:cccc:0000:dddd",
