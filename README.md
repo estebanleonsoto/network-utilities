@@ -11,8 +11,9 @@ Getting the list of available network interfaces (if your system has for instanc
 Getting details for a specific interface:
 
 <code>(interface-details "eno1")</code> produces the following map as a result:<br>
+<pre>
 <code>
-{:name "eno1",<br>
+{:name "eno1",
  :type "ether",
  :ip-v4 "192.168.1.9",
  :ip-v6 "aaaa::bbbb:cccc:0000:dddd",
@@ -20,7 +21,7 @@ Getting details for a specific interface:
  :net-mask "255.255.255.0",
  :gateway "192.168.1.1"}))))
 </code>
-
+</pre>
 ## License
 
 Copyright © 2017 GNU public Licence V. 3.0
