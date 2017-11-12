@@ -5,7 +5,8 @@ A Clojure library designed to ease operations related to networking.
 ## Usage
 
 Getting the list of available network interfaces (if your system has for instance 4 interfaces called like this: eno1, lo and wlp320):
-<code>(get-interfaces-names)<code> produces the following list: <code>'("eno1" "lo" "wlp3s0")</code>
+
+<code>(get-interfaces-names)</code> produces the following list: <code>'("eno1" "lo" "wlp3s0")</code>
 
 Getting details for a specific interface:
 
