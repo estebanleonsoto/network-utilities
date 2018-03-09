@@ -70,16 +70,26 @@
     (is (= (interface-details "eno1")
            {:name "eno1"
             :type "ether"
-            :ip-v4 "192.168.1.9"
+            :ip-v4 "192.168.1.2"
             :ip-v6 "fe80::42a2:ac3e:b51d:dd3f"
             :mac-address "d0:67:e5:38:71:b0"
             :net-mask "255.255.255.0"
             :gateway "192.168.1.1"}))))
 
-(deftest interface-details-test
-  (testing "Calling interface-details for real"
-    (is (= (interface-details "eno1") {:name "eno1", :type "ether", :ip-v4 "192.168.1.9", :ip-v6 "fe80::42a2:ac3e:b51d:dd3f", :mac-address "d0:67:e5:38:71:b0", :net-mask "255.255.255.0", :gateway "192.168.1.1"}))))
+;(deftest interface-details-test
+;  (testing "Calling interface-details for real"
+;    (is (= (interface-details "eno1") {:name "eno1", :type "ether", :ip-v4 "192.168.1.9", :ip-v6 "fe80::42a2:ac3e:b51d:dd3f", :mac-address "d0:67:e5:38:71:b0", :net-mask "255.255.255.0", :gateway "192.168.1.1"}))))
 
 (deftest get-interfaces-names-test
   (testing "Calling get-interface-names for real"
     (is (= (get-interfaces-names) '("docker0" "eno1" "lo" "wlp3s0")))))
+
+
+(deftest subnet-mask-to-CIDR-test
+  (testing "subnet-mask-to-CIDR must convert from this format 255.255.255.0 to /24"
+    (doseq [test-data '({:input "255.0.0.0" :expected-result "/8"}
+                        {:input "255.255.255.0" :expected-result "/24"}
+                        {:input "255.255.0.0" :expected-result "/16"}
+                        {:input "255.255.255.128" :expected-result "/25"}
+                        {:input "255.255.1.0" :expected-result "/16"} )]
+      (is (= (subnet-mask-to-CIDR (:input test-data)) (:expected-result test-data))))))

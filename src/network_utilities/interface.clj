@@ -61,3 +61,18 @@
   (sh/sh "ip"  "route"))
 
 (def interface-details (details-for-interface-factory ifconfig-from-shell ip-route-shell-command))
+
+(defn- to-binary [number]
+  (s/replace (format "%8s" (Integer/toBinaryString (Integer/valueOf number))) #" " "0"))
+
+(defn- amount-of-leading-bits [ones-and-ceroes]
+  (or (s/index-of ones-and-ceroes "0") (.length ones-and-ceroes)))
+
+(defn- CIDR-prefix [subnet-mask]
+  (str "/"
+       (amount-of-leading-bits
+         (reduce str
+                 (map to-binary (flatten (s/split subnet-mask #"\.")))))))
+
+(defn subnet-mask-to-CIDR [subnet-mask]
+  (CIDR-prefix subnet-mask))
