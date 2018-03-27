@@ -5,4 +5,5 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [http.async.client "1.2.0"]
                  [kovacnica/clojure.network.ip "0.1.2"]
-                 [text-utils "0.1.0"]])
+                 [text-utils "0.1.0"]
+                 [http-kit "2.2.0"]])

@@ -76,3 +76,6 @@
 
 (defn subnet-mask-to-CIDR [subnet-mask]
   (CIDR-prefix subnet-mask))
+
+(defn CIDR-for-interface [interface-data]
+  (str (:gateway interface-data) (subnet-mask-to-CIDR (:net-mask interface-data))))

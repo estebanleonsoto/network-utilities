@@ -93,3 +93,13 @@
                         {:input "255.255.255.128" :expected-result "/25"}
                         {:input "255.255.1.0" :expected-result "/16"} )]
       (is (= (subnet-mask-to-CIDR (:input test-data)) (:expected-result test-data))))))
+
+(deftest CIDR-for-interface-test
+  (testing "Should get a CIDR in the form of 192.168.1.1/24 for network with gateway 192.168.1.1 and subnet mask of 255.255.255.0"
+    (is (= (CIDR-for-interface {:name "eno1"
+                                :type "ether"
+                                :ip-v4 "192.168.1.2"
+                                :ip-v6 "fe80::42a2:ac3e:b51d:dd3f"
+                                :mac-address "d0:67:e5:38:71:b0"
+                                :net-mask "255.255.255.0"
+                                :gateway "192.168.1.1"}) "192.168.1.1/24"))))
